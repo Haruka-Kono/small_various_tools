@@ -20,7 +20,7 @@ message = p  # 入力キー初期値
 print('指示に従ってキーを入力してください')
 time.sleep(1)
 print('press enter')
-# display = time.perf_counter()
+display = time.perf_counter()
 
 # while i<21:
 while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処理実行。その分なんかしら押さないと始まらない
