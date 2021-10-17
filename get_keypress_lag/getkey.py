@@ -4,10 +4,10 @@ import time
 import numpy as np
 import pandas as pd
 
-keys = []  # 入力キーリスト
-lags = []  # タイムラグリスト
-counts = []
-lag_reacts = []
+KEYS = []  # 入力キーリスト
+RELEASE_LAGS = []  # タイムラグリスト
+COUNTS = []
+REACT_LAGS = []
 
 i = 1
 req_char = 'p'  # 入力要求文字
