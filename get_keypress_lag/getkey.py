@@ -10,14 +10,14 @@ lag_reacts = []
 i = 1
 
 p = 'press "p"'
-q = 'press "a"'
+q = 'press "q"'
 o = 'press "o"'
 w = 'press "w"'
 message = p  # 入力キー初期値
 # keyboard.wait('esc')
 print('指示に従ってキーを入力してください')
 time.sleep(1)
-print(message)
+print(p)
 display = time.perf_counter()
 # print('p')
 # while i<21:
@@ -28,11 +28,17 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     key = keyboard.read_key()
     # reac=time.perf_counter()
     release = time.perf_counter()
-    if i > 10:
+    if i == 10:
+        print('-----次はqです-----')
+        time.sleep(1)
         message = q
-    if i > 20:
+    if i == 20:
+        print('-----次はoです-----')
+        time.sleep(1)
         message = o
-    if i > 30:
+    if i == 30:
+        print('-----次はwです-----')
+        time.sleep(1)
         message = w
     print(counts)
     keys.append(key)
@@ -43,13 +49,12 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     lag_reacts.append(reaction)
     print(lags)
     print(lag_reacts)
-    time.sleep(1)
+    time.sleep(0.5)
     print(message)
     display = time.perf_counter()
     i += 1
     if i > 40:
         break
-
 
 keys_array = np.array(keys)
 lags_array = np.array(lags)
