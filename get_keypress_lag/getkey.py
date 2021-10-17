@@ -9,10 +9,12 @@ COUNTS = []
 KEYS = []  # 入力キーリスト
 RELEASE_LAGS = []  # タイムラグリスト
 REACT_LAGS = []
-DAMAGE_ROW = []
-DLEVEL = []
+DAMAGE_CHAR = []
+DLEVEL_PRE = []
+DLEVEL_POST = []
 i = 0
 req_char = 'p'  # 入力要求文字
+
 p = 'press "p"'
 q = 'press "q"'
 o = 'press "o"'
@@ -24,11 +26,11 @@ print(now)
 
 print('画面の指示に従ってp, q, o, wを打ってください。各15回、計60回。多いけど頑張りましょう。p, qは小指、o, wは薬指を使ってください。')
 
-print('これから打つのはpです。現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れている)の中から選んでください。')
+print('これから打つのはpです。現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
 damage = input()
 # print(damage)
-DAMAGE_ROW.append('pre_damege_p')
-DLEVEL.append(damage)
+DAMAGE_ROW.append('p')
+DLEVEL_PRE.append(damage)
 
 time.sleep(1)
 print(p)
@@ -58,53 +60,53 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     if i == 15:
         req_char = 'q'
         message = q
-        print('現在の疲労感は先ほどと比べてどれくらいですか？ 1 (ほとんど変わらない) ~5 (非常にきつい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('post_damege_p')
-        DLEVEL.append(damage)
+        # DAMAGE_ROW.append('p')
+        DLEVEL_POST.append(damage)
 
         print('-----次はqです-----')
-        print('現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れている)の中から選んでください。')
+        print('現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('pre_damege_q')
-        DLEVEL.append(damage)
+        DAMAGE_ROW.append('q')
+        DLEVEL_PRE.append(damage)
         time.sleep(1)
 
     if i == 30:
         req_char = 'o'
         message = o
         print(
-            '現在の疲労感は先ほどと比べてどれくらいですか？ 1 (ほとんど変わらない) ~5 (非常にきつい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+            '現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('post_damege_q')
-        DLEVEL.append(damage)
+        # DAMAGE_ROW.append('q')
+        DLEVEL_POST.append(damage)
 
         print('-----次はoです-----')
-        print('現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れている)の中から選んでください。')
+        print('現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('pre_damege_o')
-        DLEVEL.append(damage)
+        DAMAGE_ROW.append('o')
+        DLEVEL_PRE.append(damage)
         time.sleep(1)
     if i == 45:
         req_char = 'w'
         message = w
         print(
-            '現在の疲労感は先ほどと比べてどれくらいですか？ 1 (ほとんど変わらない) ~5 (非常にきつい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+            '現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('post_damege_o')
-        DLEVEL.append(damage)
+        # DAMAGE_ROW.append('o')
+        DLEVEL_POST.append(damage)
 
         print('-----次はwです-----')
-        print('現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れている)の中から選んでください。')
+        print('現在の指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('pre_damege_w')
-        DLEVEL.append(damage)
+        DAMAGE_ROW.append('w')
+        DLEVEL_PRE.append(damage)
         time.sleep(1)
 
     time.sleep(0.5)
@@ -113,11 +115,11 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
 
     if i == 60:
         print(
-            '現在の疲労感は先ほどと比べてどれくらいですか？ 1 (ほとんど変わらない) ~5 (非常にきつい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+            '現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
-        DAMAGE_ROW.append('post_damege_w')
-        DLEVEL.append(damage)
+        # DAMAGE_ROW.append('w')
+        DLEVEL_POST.append(damage)
         break
 
 
@@ -136,7 +138,7 @@ if i > 30:
     df.to_csv(now_prefix+'_typedata.csv', index=None)
     print(df)
 
-    damage_data = np.stack([DAMAGE_ROW, DLEVEL])
+    damage_data = np.stack([DAMAGE_ROW, DLEVEL_PRE, DLEVEL_POST])
     df_d = pd.DataFrame(damage_data)
     df_d = df_d.T
     df_d.to_csv(now_prefix+'_damage.csv', index=None)
