@@ -72,7 +72,8 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     if i == 30:
         req_char = 'o'
         message = o
-        print('疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れた)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print(
+            '疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れた)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = keyboard.read_key()
         DAMAGE_ROW.append('post_damege_q')
         DLEVEL.append(damage)
@@ -86,7 +87,8 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     if i == 45:
         req_char = 'w'
         message = w
-        print('疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れた)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print(
+            '疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れた)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = keyboard.read_key()
         DAMAGE_ROW.append('post_damege_q')
         DLEVEL.append(damage)
@@ -103,12 +105,12 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     display = time.perf_counter()
 
     if i == 60:
-        print('疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れた)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print(
+            '疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ~5 (非常に疲れた)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = keyboard.read_key()
         DAMAGE_ROW.append('post_damege_w')
         DLEVEL.append(damage)
         break
-
 
 
 # keys_array = np.array(KEYS)
