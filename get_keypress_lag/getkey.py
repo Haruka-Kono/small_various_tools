@@ -9,7 +9,7 @@ RELEASE_LAGS = []  # タイムラグリスト
 COUNTS = []
 REACT_LAGS = []
 
-i = 1
+i = 0
 req_char = 'p'  # 入力要求文字
 p = 'press "p"'
 q = 'press "q"'
@@ -19,28 +19,12 @@ message = p  # 入力キー初期値
 
 print('指示に従ってキーを入力してください')
 time.sleep(1)
-print(p)
-display = time.perf_counter()
+print('press enter')
+# display = time.perf_counter()
 
 # while i<21:
 while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処理実行。その分なんかしら押さないと始まらない
     # print('p')
-    if i == 10:
-        req_char = 'q'
-        message = q
-        print('-----次はqです-----')
-        time.sleep(1)
-    if i == 20:
-        req_char = 'o'
-        message = o
-        print('-----次はoです-----')
-        time.sleep(1)
-    if i == 30:
-        req_char = 'w'
-        message = w
-        print('-----次はwです-----')
-        time.sleep(1)
-
     press = time.perf_counter()
     key = keyboard.read_key()
     release = time.perf_counter()
@@ -54,6 +38,22 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
         RELEASE_LAGS.append(release_lag)
         REACT_LAGS.append(react_lag)
 
+    if i == 10:
+        req_char = 'q'
+        message = q
+        # print('-----次はqです-----')
+        time.sleep(1)
+    if i == 20:
+        req_char = 'o'
+        message = o
+        # print('-----次はoです-----')
+        time.sleep(1)
+    if i == 30:
+        req_char = 'w'
+        message = w
+        # print('-----次はwです-----')
+        time.sleep(1)
+
     print(COUNTS)
     print(KEYS)
     print(RELEASE_LAGS)
@@ -64,10 +64,10 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     if i > 40:
         break
 
-keys_array = np.array(KEYS)
-lags_array = np.array(RELEASE_LAGS)
-lag_reacts_array = np.array(REACT_LAGS)
-data = np.stack([counts, keys, lags, lag_reacts_array])
+# keys_array = np.array(KEYS)
+# lags_array = np.array(RELEASE_LAGS)
+# lag_reacts_array = np.array(REACT_LAGS)
+data = np.stack([COUNTS, KEYS, RELEASE_LAGS, REACT_LAGS])
 print(data)
 df = pd.DataFrame(data)
 df = df.T
