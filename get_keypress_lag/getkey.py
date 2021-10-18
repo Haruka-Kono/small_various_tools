@@ -78,7 +78,7 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     if 60 < i 80 and i % 2 != 0:
         req_char = 's'
         message = s
-    
+
     if key == req_char:
         i += 1
         release_lag = release-press
