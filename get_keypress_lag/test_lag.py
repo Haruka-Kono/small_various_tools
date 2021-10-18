@@ -54,7 +54,7 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     if 0 < i < 20 and i % 2 == 0:
         req_char = 'p'
         message = p
-    else 0 < i < 20 and i % 2 != 0:
+    if 0 < i < 20 and i % 2 != 0:
         req_char = ';'
         message = semic
 
