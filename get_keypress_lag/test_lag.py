@@ -12,7 +12,7 @@ REACT_LAGS = []
 CHAR = []
 DLEVEL_PRE = []
 DLEVEL_POST = []
-i = 0
+i = 1
 req_char = 'p'  # 入力要求文字
 
 p = 'press "p"'
@@ -47,31 +47,42 @@ display = time.perf_counter()
 # while i<21:
 while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処理実行。その分なんかしら押さないと始まらない
     # print('p')
+    #    if key == req_char and i == 0:
+    #        i += 1
+    #        continue
+
     press = time.perf_counter()
     key = keyboard.read_key()
     release = time.perf_counter()
 
-    if 0 < i < 20 and i % 2 == 0:
-        req_char = 'p'
-        message = p
-    if 0 < i < 20 and i % 2 != 0:
-        req_char = ';'
-        message = semic
-
-    if key == req_char:
-        i += 1
+    if key == req_char and i > 0:
         release_lag = release-press
         react_lag = press-display
         KEYS.append(key)
         COUNTS.append(i)
         RELEASE_LAGS.append(release_lag)
         REACT_LAGS.append(react_lag)
-
         print(COUNTS)
         print(KEYS)
         print(RELEASE_LAGS)
         print(REACT_LAGS)
+        i += 1
+
+    if 1 < i < 21 and i % 2 != 0:
+        req_char = 'p'
+        message = p
+
+    if 1 < i < 21 and i % 2 == 0:
+        req_char = ';'
+        message = semic
 
     time.sleep(0.5)
     print(message)
     display = time.perf_counter()
+
+    if i == 21:
+        print('pは終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        damage = input()
+    # print(damage)
+    # CHAR.append('p')
+        DLEVEL_POST.append(damage)
