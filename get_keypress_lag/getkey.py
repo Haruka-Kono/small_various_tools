@@ -16,17 +16,24 @@ i = 0
 req_char = 'p'  # 入力要求文字
 
 p = 'press "p"'
+semic = 'press ";"'
+
 q = 'press "q"'
+a = 'press "a"'
+
 o = 'press "o"'
+el = 'press "l"'
+
 w = 'press "w"'
+s = 'press "s"'
 message = p  # 入力キー初期値
 
 now = datetime.datetime.now()
 print(now)
 
-print('画面の指示に従ってp, q, o, wを打ってください。各15回、計60回。多いけど頑張りましょう。p, qは小指、o, wは薬指を使ってください。')
+print('画面の指示に従ってキーを打ってください。計80回。多いけど頑張りましょう。p/;, q/aは小指、o/l, w/sは薬指を使ってください。')
 
-print('これから打つのはpです。右手小指で打ってください。現在の右手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
 damage = input()
 # print(damage)
 CHAR.append('p')
@@ -44,6 +51,34 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
     key = keyboard.read_key()
     release = time.perf_counter()
 
+    if 0 < i < 20 and i % 2 == 0:
+        req_char = 'p'
+        message = p
+    if 0 < i < 20 and i % 2 != 0:
+        req_char = ';'
+        message = semic
+
+    if 20 < i 40 and i % 2 == 0:
+        req_char = 'q'
+        message = q
+    if 20 < i 40 and i % 2 != 0:
+        req_char = 'a'
+        message = a
+
+    if 40 < i 60 and i % 2 == 0:
+        req_char = 'o'
+        message = o
+    if 40 < i 60 and i % 2 != 0:
+        req_char = 'l'
+        message = l
+
+    if 60 < i 80 and i % 2 == 0:
+        req_char = 'w'
+        message = w
+    if 60 < i 80 and i % 2 != 0:
+        req_char = 's'
+        message = s
+    
     if key == req_char:
         i += 1
         release_lag = release-press
@@ -59,14 +94,13 @@ while keyboard.read_key() != 'esc':  # esc押すまでwhileブロック内の処
         print(REACT_LAGS)
 
     if i == 15:
-        req_char = 'q'
-        message = q
         print('pは終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
         # CHAR.append('p')
         DLEVEL_POST.append(damage)
-
+        req_char = 'q'
+        message = q
         print('-----次はqです。左手小指で打ってください-----')
         print('現在の左手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
