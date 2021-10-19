@@ -13,6 +13,7 @@ REACT_LAGS = []
 CHAR = []
 DLEVEL_PRE = []
 DLEVEL_POST = []
+DLEVEL_GAP = []
 i = 1
 req_char = 'p'  # 入力要求文字初期値
 
@@ -38,10 +39,10 @@ print('画面の指示に従ってキーを打ってください。計80回。�
 time.sleep((1))
 print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
-damage = input()
+d_pre = input()
 # print(damage)
 CHAR.append('p/;')
-DLEVEL_PRE.append(damage)
+DLEVEL_PRE.append(d_pre)
 
 print('-----約1秒後にp開始です-----')
 time.sleep(1)
@@ -106,56 +107,62 @@ while keyboard.read_key() != 'esc':
     if i == 21:
         print('p/;は終了です。現在の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
-        damage = input()
+        d_post = input()
         # print(damage)
         # CHAR.append('p')
-        DLEVEL_POST.append(damage)
+        DLEVEL_POST.append(d_post)
+        d_gap = d_post - d_pre
+        DLEVEL_GAP.append(d_gap)
         req_char = 'q'
         message = q
         print('-----次はq/aです。左手小指で打ってください-----')
         print('現在の左手小指の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
-        damage = input()
+        d_pre = input()
         # print(damage)
         CHAR.append('q/;')
-        DLEVEL_PRE.append(damage)
+        DLEVEL_PRE.append(d_pre)
         print('-----約1秒後にq開始です-----')
         time.sleep(1)
 
     if i == 41:
         print('q/aは終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
-        damage = input()
+        d_post = input()
         # print(damage)
         # CHAR.append('q')
-        DLEVEL_POST.append(damage)
+        DLEVEL_POST.append(d_post)
+        d_gap = d_post - d_pre
+        DLEVEL_GAP.append(d_gap)
         req_char = 'o'
         message = o
         print('-----次はo/lです。右手薬指で打ってください。-----')
         print('現在の右手薬指の疲労感はどれくらいですか？ \
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
-        damage = input()
+        d_pre = input()
         # print(damage)
         CHAR.append('o/a')
-        DLEVEL_PRE.append(damage)
+        DLEVEL_PRE.append(d_pre)
         print('-----約1秒後にo開始です-----')
         time.sleep(1)
 
     if i == 61:
         print('o/lは終了です。現在の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
-        damage = input()
+        d_post = input()
         # print(damage)
         # CHAR.append('o')
-        DLEVEL_POST.append(damage)
+        DLEVEL_POST.append(d_post)
+        d_gap = d_post - d_pre
+        DLEVEL_GAP.append(d_gap)
         req_char = 'w'
         message = w
         print('-----次はw/sです。左手薬指で打ってください。-----')
         print('現在の左手薬指の疲労感はどれくらいですか？ \
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
-        damage = input()
+        d_pre = input()
         # print(damage)
         CHAR.append('w/s')
-        DLEVEL_PRE.append(damage)
+        DLEVEL_PRE.append(d_pre)
         print('-----約1秒後にw開始です-----')
         time.sleep(1)
 
@@ -167,10 +174,12 @@ while keyboard.read_key() != 'esc':
     if i == 81:
         print('w/s終了です。現在の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
-        damage = input()
+        d_post = input()
         # print(damage)
         # CHAR.append('w')
-        DLEVEL_POST.append(damage)
+        DLEVEL_POST.append(d_post)
+        d_gap = d_post - d_pre
+        DLEVEL_GAP.append(d_gap)
         break
 
 # keys_array = np.array(KEYS)
@@ -191,6 +200,6 @@ if i > 41:
     damage_data = np.stack([CHAR, DLEVEL_PRE, DLEVEL_POST])
     df_d = pd.DataFrame(damage_data)
     df_d = df_d.T
-    df_d.columns = ['文字', '開始前疲労', '終了後疲労']
+    df_d.columns = ['文字', '開始前疲労', '終了後疲労', '疲労差分']
     df_d.to_csv('./data/'+now_prefix+'_damage.csv', index=None)
     print(df_d)
