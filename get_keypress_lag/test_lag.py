@@ -73,7 +73,7 @@ while keyboard.read_key() != 'esc':
     if 1 < i < 21 and i % 2 != 0:
         req_char = 'p'
         message = p
-    if 1 < i < 20 and i % 2 == 0:
+    if 1 < i < 21 and i % 2 == 0:
         req_char = ';'
         message = semic
 

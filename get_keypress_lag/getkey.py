@@ -36,13 +36,14 @@ now_display = now_init.strftime('%Y-%m-%d %H:%M')
 print('現在時刻: '+now_display)
 print('画面の指示に従ってキーを打ってください。計80回。多いけど頑張りましょう。p/;, q/aは小指、o/l, w/sは薬指を使ってください。')
 time.sleep((1))
-print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感はどれくらいですか？\
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
 damage = input()
 # print(damage)
 CHAR.append('p/;')
 DLEVEL_PRE.append(damage)
 
-print('-----まもなくp開始です-----')
+print('-----約1秒後にp開始です-----')
 time.sleep(1)
 print(p)
 display = time.perf_counter()
@@ -50,10 +51,7 @@ display = time.perf_counter()
 # while i<21:
 ## esc押すまでwhileブロック内の処理実行。その分なんかしら押さないと始まらない
 while keyboard.read_key() != 'esc':
-    # print('p')
-    #    if key == req_char and i == 0:
-    #        i += 1
-    #        continue
+
     ## 入力キー取得、押下終了時間取得
     press = time.perf_counter()
     key = keyboard.read_key()
@@ -77,7 +75,7 @@ while keyboard.read_key() != 'esc':
     if 1 < i < 21 and i % 2 != 0:
         req_char = 'p'
         message = p
-    if 1 < i < 20 and i % 2 == 0:
+    if 1 < i < 21 and i % 2 == 0:
         req_char = ';'
         message = semic
 
@@ -104,7 +102,8 @@ while keyboard.read_key() != 'esc':
 
     ## 各指入力終了時の処理
     if i == 21:
-        print('p/;は終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('p/;は終了です。現在の疲労感はどれくらいですか？\
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
         # CHAR.append('p')
@@ -112,12 +111,13 @@ while keyboard.read_key() != 'esc':
         req_char = 'q'
         message = q
         print('-----次はq/aです。左手小指で打ってください-----')
-        print('現在の左手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+        print('現在の左手小指の疲労感はどれくらいですか？\
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
         # print(damage)
         CHAR.append('q/;')
         DLEVEL_PRE.append(damage)
-        print('-----まもなくq開始です-----')
+        print('-----約1秒後にq開始です-----')
         time.sleep(1)
 
     if i == 41:
@@ -129,16 +129,18 @@ while keyboard.read_key() != 'esc':
         req_char = 'o'
         message = o
         print('-----次はo/lです。右手薬指で打ってください。-----')
-        print('現在の右手薬指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+        print('現在の右手薬指の疲労感はどれくらいですか？ \
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
         # print(damage)
         CHAR.append('o/a')
         DLEVEL_PRE.append(damage)
-        print('-----まもなくo開始です-----')
+        print('-----約1秒後にo開始です-----')
         time.sleep(1)
 
     if i == 61:
-        print('o/lは終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('o/lは終了です。現在の疲労感はどれくらいですか？\
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
         # CHAR.append('o')
@@ -146,12 +148,13 @@ while keyboard.read_key() != 'esc':
         req_char = 'w'
         message = w
         print('-----次はw/sです。左手薬指で打ってください。-----')
-        print('現在の左手薬指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+        print('現在の左手薬指の疲労感はどれくらいですか？ \
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         damage = input()
         # print(damage)
         CHAR.append('w/s')
         DLEVEL_PRE.append(damage)
-        print('-----まもなくw開始です-----')
+        print('-----約1秒後にw開始です-----')
         time.sleep(1)
 
     ## 入力文字表示、反応時間測定開始（原則的に最後部）
@@ -160,7 +163,8 @@ while keyboard.read_key() != 'esc':
     display = time.perf_counter()
 
     if i == 81:
-        print('w/s終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('w/s終了です。現在の疲労感はどれくらいですか？\
+1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         damage = input()
         # print(damage)
         # CHAR.append('w')
