@@ -65,8 +65,8 @@ while keyboard.read_key() != 'esc':
         REACT_LAGS.append(react_lag)
         print(COUNTS)
         print(KEYS)
-        print(RELEASE_LAGS)
-        print(REACT_LAGS)
+        # print(RELEASE_LAGS)
+        # print(REACT_LAGS)
         i += 1
 
     ## 入力要求文字分岐 (iの初期値が諸事情で1なので(i-1)回目になる事に注意)
