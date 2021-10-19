@@ -5,6 +5,7 @@ import datetime
 import numpy as np
 import pandas as pd
 
+## リスト一群
 COUNTS = []
 KEYS = []  # 入力キーリスト
 RELEASE_LAGS = []  # タイムラグリスト
@@ -13,8 +14,9 @@ CHAR = []
 DLEVEL_PRE = []
 DLEVEL_POST = []
 i = 1
-req_char = 'p'  # 入力要求文字
+req_char = 'p'  # 入力要求文字初期値
 
+## 入力要求メッセージ用変数
 p = 'press "p"'
 semic = 'press ";"'
 
@@ -27,12 +29,11 @@ l = 'press "l"'
 w = 'press "w"'
 s = 'press "s"'
 
-message = p  # 入力キー初期値
+message = p  # 入力要求メッセージ初期値
 
-now = datetime.datetime.now()
-now.strftime('%Y-%m-%d %H:%Mm')
-print('現在時刻: '+now)
-
+now_init = datetime.datetime.now()
+now_display = now_init.strftime('%Y-%m-%d %H:%M')
+print('現在時刻: '+now_display)
 print('画面の指示に従ってキーを打ってください。計80回。多いけど頑張りましょう。p/;, q/aは小指、o/l, w/sは薬指を使ってください。')
 time.sleep((1))
 print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
@@ -175,7 +176,7 @@ if i > 41:
     df = pd.DataFrame(data)
     df = df.T
     df.columns = ['回数', '入力キー', '押下時間', '反応時間']
-    now_prefix = now.strftime('%Y-%m-%d_%Hh%Mm')
+    now_prefix = now_init.strftime('%Y-%m-%d_%Hh%Mm')
     #print(now_prefix)
     #print(now_prefix+'_test')
     df.to_csv(now_prefix+'_typedata.csv', index=None)
