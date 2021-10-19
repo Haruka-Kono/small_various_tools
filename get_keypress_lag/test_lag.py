@@ -69,7 +69,7 @@ while keyboard.read_key() != 'esc':
         print(REACT_LAGS)
         i += 1
 
-    ## 入力要求文字分岐
+    ## 入力要求文字分岐 (iの初期値が諸事情で1なので(i-1)回目になる事に注意)
     if 1 < i < 21 and i % 2 != 0:
         req_char = 'p'
         message = p
@@ -77,10 +77,10 @@ while keyboard.read_key() != 'esc':
         req_char = ';'
         message = semic
 
-    if 21 < i 40 and i % 2 != 0:
+    if 21 < i 41 and i % 2 != 0:
         req_char = 'q'
         message = q
-    if 21 < i 40 and i % 2 == 0:
+    if 21 < i 41 and i % 2 == 0:
         req_char = 'a'
         message = a
 
