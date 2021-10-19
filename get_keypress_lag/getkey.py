@@ -160,7 +160,7 @@ while keyboard.read_key() != 'esc':
         time.sleep(1)
 
     ## 入力文字表示、反応時間測定開始（原則的に最後部）
-    time.sleep(0.5)
+    time.sleep(0.2)
     print(message)
     display = time.perf_counter()
 
