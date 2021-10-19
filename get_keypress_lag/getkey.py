@@ -185,12 +185,12 @@ if i > 41:
     now_prefix = now_init.strftime('%Y-%m-%d_%Hh%Mm')
     #print(now_prefix)
     #print(now_prefix+'_test')
-    df.to_csv(now_prefix+'_typedata.csv', index=None)
+    df.to_csv('./data/'+now_prefix+'_typedata.csv', index=None)
     print(df)
 
     damage_data = np.stack([CHAR, DLEVEL_PRE, DLEVEL_POST])
     df_d = pd.DataFrame(damage_data)
     df_d = df_d.T
     df_d.columns = ['文字', '開始前疲労', '終了後疲労']
-    df_d.to_csv(now_prefix+'_damage.csv', index=None)
+    df_d.to_csv('./data/'+now_prefix+'_damage.csv', index=None)
     print(df_d)
