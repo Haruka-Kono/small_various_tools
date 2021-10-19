@@ -190,7 +190,7 @@ if i > 41:
     # print(data)
     df = pd.DataFrame(data)
     df = df.T
-    df.columns = ['回数', '入力キー', '押下時間', '反応時間']
+    df.columns = ['count', 'key', 'pressing time', 'reaction speed']
     now_prefix = now_init.strftime('%Y-%m-%d_%Hh%Mm')
     #print(now_prefix)
     #print(now_prefix+'_test')
@@ -200,6 +200,6 @@ if i > 41:
     damage_data = np.stack([CHAR, DLEVEL_PRE, DLEVEL_POST])
     df_d = pd.DataFrame(damage_data)
     df_d = df_d.T
-    df_d.columns = ['文字', '開始前疲労', '終了後疲労', '疲労差分']
+    df_d.columns = ['key', 'pre-damage', 'post-damage', 'gap']
     df_d.to_csv('./data/'+now_prefix+'_damage.csv', index=None)
     print(df_d)
