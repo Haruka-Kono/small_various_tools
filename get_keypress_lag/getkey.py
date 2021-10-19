@@ -65,8 +65,10 @@ while keyboard.read_key() != 'esc':
         COUNTS.append(i)
         RELEASE_LAGS.append(release_lag)
         REACT_LAGS.append(react_lag)
-        print(COUNTS)
-        print(KEYS)
+        print(i)
+        print(key)
+        # print(COUNTS)
+        # print(KEYS)
         # print(RELEASE_LAGS)
         # print(REACT_LAGS)
         i += 1
@@ -176,7 +178,7 @@ while keyboard.read_key() != 'esc':
 # lag_reacts_array = np.array(REACT_LAGS)
 if i > 41:
     data = np.stack([COUNTS, KEYS, RELEASE_LAGS, REACT_LAGS])
-    print(data)
+    # print(data)
     df = pd.DataFrame(data)
     df = df.T
     df.columns = ['回数', '入力キー', '押下時間', '反応時間']
