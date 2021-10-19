@@ -77,13 +77,6 @@ while keyboard.read_key() != 'esc':
         req_char = ';'
         message = semic
 
-    if 21 < i 41 and i % 2 != 0:
-        req_char = 'q'
-        message = q
-    if 21 < i 41 and i % 2 == 0:
-        req_char = 'a'
-        message = a
-
     ## 各指入力終了時の処理
     if i == 21:
         print('p/;は終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
@@ -101,6 +94,13 @@ while keyboard.read_key() != 'esc':
         DLEVEL_PRE.append(damage)
         print('-----まもなくq開始です-----')
         time.sleep(1)
+
+    if 22 < i < 41 and i % 2 != 0:
+        req_char = 'q'
+        message = q
+    if 21 < i < 41 and i % 2 == 0:
+        req_char = 'a'
+        message = a
 
     ## 入力文字表示、反応時間測定開始（原則的に最後部）
     time.sleep(0.5)
