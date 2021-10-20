@@ -28,21 +28,20 @@ w = 'press "w"'
 s = 'press "s"'
 message = p  # 入力キー初期値
 
-now_init = datetime.datetime.now()
-# print(now)
-
-print('画面の指示に従ってキーを打ってください。計80回。多いけど頑張りましょう。p/;, q/aは小指、o/l, w/sは薬指を使ってください。')
-print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感（≒今日のPC作業量）はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
-damage = input()
-# print(damage)
-CHAR.append('p/;')
-DLEVEL_PRE.append(damage)
-
-now_prefix = now_init.strftime('%Y-%m-%d_%Hh%Mm')
-#print(now_prefix)
-#print(now_prefix+'_test')
-data = ['1', '2']
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+key = ['p', ';', 'p', ';', 'p', ';', 'p', ';', 'p', ';', 'p', ';', 'p', ';', 'p', ';', 'p', ';', 'p', ';']
+data = np.stack([list, key])
 df = pd.DataFrame(data)
 df = df.T
-filename_t = now_prefix+'test.csv'
-df.to_csv('./data/'+now_prefix+'test.csv', index=None)
+df.columns = ['count', 'key']
+# print(df)
+
+damage = [1.5, 2.5, 3.5, 4.5]
+gap = [1, 2, 3, 4]
+data_2 = np.stack([damage, gap])
+df_2 = pd.DataFrame(data_2)
+df_2 = df_2.T
+df_2.columns = ['damage', 'gap']
+# print(df_2)
+df_bind = pd.concat([df, df_2], axis=0, join='outer')
+print(df_bind)

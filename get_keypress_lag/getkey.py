@@ -40,6 +40,7 @@ time.sleep((1))
 print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
 d_pre = input()
+d_pre = float(d_pre)
 # print(damage)
 CHAR.append('p/;')
 DLEVEL_PRE.append(d_pre)
@@ -108,6 +109,7 @@ while keyboard.read_key() != 'esc':
         print('p/;は終了です。現在の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
+        d_post = float(d_post)
         # print(damage)
         # CHAR.append('p')
         DLEVEL_POST.append(d_post)
@@ -119,6 +121,7 @@ while keyboard.read_key() != 'esc':
         print('現在の左手小指の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         d_pre = input()
+        d_pre = float(d_pre)
         # print(damage)
         CHAR.append('q/;')
         DLEVEL_PRE.append(d_pre)
@@ -128,6 +131,7 @@ while keyboard.read_key() != 'esc':
     if i == 41:
         print('q/aは終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
+        d_post = float(d_post)
         # print(damage)
         # CHAR.append('q')
         DLEVEL_POST.append(d_post)
@@ -139,6 +143,7 @@ while keyboard.read_key() != 'esc':
         print('現在の右手薬指の疲労感はどれくらいですか？ \
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         d_pre = input()
+        d_pre = float(d_pre)
         # print(damage)
         CHAR.append('o/a')
         DLEVEL_PRE.append(d_pre)
@@ -149,6 +154,7 @@ while keyboard.read_key() != 'esc':
         print('o/lは終了です。現在の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
+        d_post = float(d_post)
         # print(damage)
         # CHAR.append('o')
         DLEVEL_POST.append(d_post)
@@ -160,6 +166,7 @@ while keyboard.read_key() != 'esc':
         print('現在の左手薬指の疲労感はどれくらいですか？ \
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
         d_pre = input()
+        d_pre = float(d_pre)
         # print(damage)
         CHAR.append('w/s')
         DLEVEL_PRE.append(d_pre)
@@ -175,6 +182,7 @@ while keyboard.read_key() != 'esc':
         print('w/s終了です。現在の疲労感はどれくらいですか？\
 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
+        d_post = float(d_post)
         # print(damage)
         # CHAR.append('w')
         DLEVEL_POST.append(d_post)
@@ -190,16 +198,17 @@ if i > 41:
     # print(data)
     df = pd.DataFrame(data)
     df = df.T
-    df.columns = ['count', 'key', 'pressing time', 'reaction speed']
     now_prefix = now_init.strftime('%Y-%m-%d_%Hh%Mm')
     #print(now_prefix)
     #print(now_prefix+'_test')
-    df.to_csv('./data/'+now_prefix+'_typedata.csv', index=None)
-    print(df)
+    # df.to_csv('./data/'+now_prefix+'_typedata.csv', index=None)
+    # print(df)
 
-    damage_data = np.stack([CHAR, DLEVEL_PRE, DLEVEL_POST])
+    damage_data = np.stack([CHAR, DLEVEL_PRE, DLEVEL_POST, DLEVEL_GAP])
     df_d = pd.DataFrame(damage_data)
     df_d = df_d.T
-    df_d.columns = ['key', 'pre-damage', 'post-damage', 'gap']
-    df_d.to_csv('./data/'+now_prefix+'_damage.csv', index=None)
+    # df_d.columns = ['key', 'pre-damage', 'post-damage', 'gap']
+    df_bind = pd.concat([df, df_d], axis=0)
+    df_bind.columns = ['count', 'key', 'pressing_time', 'reaction_speed']
+    df_bind.to_csv('./data/'+now_prefix+'_typedata.csv', index=None)
     print(df_d)
