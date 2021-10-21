@@ -37,8 +37,8 @@ now_display = now_init.strftime('%Y-%m-%d %H:%M')
 print('現在時刻: '+now_display)
 print('画面の指示に従ってキーを打ってください。計80回。多いけど頑張りましょう。p/;, q/aは小指、o/l, w/sは薬指を使ってください。')
 time.sleep((1))
-print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感はどれくらいですか？\
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+print('これから打つのはp/;です。右手小指で打ってください。現在の右手小指の疲労感や痺れはどれくらいですか？\
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。')
 d_pre = input()
 d_pre = float(d_pre)
 # print(damage)
@@ -60,15 +60,19 @@ while keyboard.read_key() != 'esc':
     release = time.perf_counter()
 
     ## 入力キー正誤判定及びリスト追加（and i > 0はいらないか？）、表示
-    if key == req_char and i > 0:
+    if key == req_char:
         release_lag = release-press
         react_lag = press-display
         KEYS.append(key)
         COUNTS.append(i)
         RELEASE_LAGS.append(release_lag)
         REACT_LAGS.append(react_lag)
+        tmp = np.stack([COUNTS, KEYS, RELEASE_LAGS, REACT_LAGS])
+        tmp = pd.DataFrame(tmp)
+        tmp = tmp.T
+        tmp.to_csv('tmp.csv', index=None)
         print(i)
-        print(key)
+        # print(key)
         # print(COUNTS)
         # print(KEYS)
         # print(RELEASE_LAGS)
@@ -106,8 +110,8 @@ while keyboard.read_key() != 'esc':
 
     ## 各指入力終了時の処理
     if i == 21:
-        print('p/;は終了です。現在の疲労感はどれくらいですか？\
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('p/;は終了です。現在の疲労感や痺れはどれくらいですか？\
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
         d_post = float(d_post)
         # print(damage)
@@ -118,8 +122,8 @@ while keyboard.read_key() != 'esc':
         req_char = 'q'
         message = q
         print('-----次はq/aです。左手小指で打ってください-----')
-        print('現在の左手小指の疲労感はどれくらいですか？\
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+        print('現在の左手小指の疲労感や痺れはどれくらいですか？\
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。')
         d_pre = input()
         d_pre = float(d_pre)
         # print(damage)
@@ -129,7 +133,7 @@ while keyboard.read_key() != 'esc':
         time.sleep(1)
 
     if i == 41:
-        print('q/aは終了です。現在の疲労感はどれくらいですか？ 1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('q/aは終了です。現在の疲労感や痺れはどれくらいですか？ 1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
         d_post = float(d_post)
         # print(damage)
@@ -140,8 +144,8 @@ while keyboard.read_key() != 'esc':
         req_char = 'o'
         message = o
         print('-----次はo/lです。右手薬指で打ってください。-----')
-        print('現在の右手薬指の疲労感はどれくらいですか？ \
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+        print('現在の右手薬指の疲労感や痺れはどれくらいですか？ \
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。')
         d_pre = input()
         d_pre = float(d_pre)
         # print(damage)
@@ -151,8 +155,8 @@ while keyboard.read_key() != 'esc':
         time.sleep(1)
 
     if i == 61:
-        print('o/lは終了です。現在の疲労感はどれくらいですか？\
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('o/lは終了です。現在の疲労感や痺れはどれくらいですか？\
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
         d_post = float(d_post)
         # print(damage)
@@ -163,8 +167,8 @@ while keyboard.read_key() != 'esc':
         req_char = 'w'
         message = w
         print('-----次はw/sです。左手薬指で打ってください。-----')
-        print('現在の左手薬指の疲労感はどれくらいですか？ \
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。')
+        print('現在の左手薬指の疲労感や痺れはどれくらいですか？ \
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。')
         d_pre = input()
         d_pre = float(d_pre)
         # print(damage)
@@ -174,13 +178,13 @@ while keyboard.read_key() != 'esc':
         time.sleep(1)
 
     ## 入力文字表示、反応時間測定開始（原則的に最後部）
-    time.sleep(0.3)
+    time.sleep(0.25)
     print(message)
     display = time.perf_counter()
 
     if i == 81:
-        print('w/s終了です。現在の疲労感はどれくらいですか？\
-1 (ほとんど疲れていない) ～ 5 (非常に疲れている)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
+        print('w/s終了です。現在の疲労感や痺れはどれくらいですか？\
+1 (ほとんど問題ない) ～ 5 (非常につらい)の中から選んでください。※途中から別の指で打った場合は0を選んでください。')
         d_post = input()
         d_post = float(d_post)
         # print(damage)
