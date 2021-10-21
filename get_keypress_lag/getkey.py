@@ -71,7 +71,7 @@ while keyboard.read_key() != 'esc':
         tmp = pd.DataFrame(tmp)
         tmp = tmp.T
         tmp.to_csv('tmp.csv', index=None)
-        print(i)
+        # print(i)
         # print(key)
         # print(COUNTS)
         # print(KEYS)
@@ -179,7 +179,7 @@ while keyboard.read_key() != 'esc':
 
     ## 入力文字表示、反応時間測定開始（原則的に最後部）
     time.sleep(0.25)
-    print(message)
+    print(message+'\n')
     display = time.perf_counter()
 
     if i == 81:
