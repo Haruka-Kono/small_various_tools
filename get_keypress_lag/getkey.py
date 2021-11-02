@@ -5,7 +5,7 @@ import datetime
 import numpy as np
 import pandas as pd
 
-## リスト一群
+## lists
 COUNTS = []
 KEYS = []  # 入力キーリスト
 RELEASE_LAGS = []  # タイムラグリスト
